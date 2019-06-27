@@ -168,9 +168,23 @@ namespace SanaraV2.Modules.Tools
                     (Program.p.db.IsAvailable(Context.Guild.Id, Program.Module.Settings) ? "**11**: " + settingsModule + Environment.NewLine : "") +
                     (Program.p.db.IsAvailable(Context.Guild.Id, Program.Module.Vn) ? "**12**: " + visualNovelModule + Environment.NewLine : "") +
                     (Program.p.db.IsAvailable(Context.Guild.Id, Program.Module.Xkcd) ? "**13**: " + xkcdModule + Environment.NewLine : "") +
-                    (Program.p.db.IsAvailable(Context.Guild.Id, Program.Module.Youtube) ? "**14**: " + youtubeModule + Environment.NewLine: "");
+                    (Program.p.db.IsAvailable(Context.Guild.Id, Program.Module.Youtube) ? "**14**: " + youtubeModule + Environment.NewLine: "") + Environment.NewLine +
+                    "Today is Sanara's birthday, make sure to wish her by using the \"Happy Birthday\" command.";
             }
             await ReplyAsync("", false, embed.Build());
+        }
+
+        [Command("Happy Birthday")]
+        public async Task HappyBirthday(params string[] args)
+        {
+            if (!File.Exists("hb.txt"))
+                File.WriteAllText("hb.txt", "");
+            List<string> content = File.ReadAllLines("hb.txt").ToList();
+            if (!content.Contains(Context.User.Id.ToString()))
+                content.Add(Context.User.Id.ToString());
+            File.WriteAllLines("hb.txt", content);
+            await ReplyAsync("Thanks, today I'm 2 years old and already on " + Program.p.client.Guilds.Count + " servers!" + Environment.NewLine +
+                "That may not seam a lot compared to some others of my fellowmen but I'm grateful for all the interactions everyones have with me!");
         }
 
         [Command("GDPR"), Summary("Show infos the bot have about the user and the guild")]
