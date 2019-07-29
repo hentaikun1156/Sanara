@@ -16,8 +16,6 @@ using Discord;
 using Discord.Commands;
 using SanaraV2.Modules.Base;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 

@@ -390,6 +390,7 @@ namespace SanaraV2
             Code,
             Communication,
             Doujinshi,
+            FireEmblem,
             Game,
             Information,
             Kancolle,
