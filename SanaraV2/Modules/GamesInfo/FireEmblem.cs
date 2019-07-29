@@ -12,6 +12,7 @@
 ///
 /// You should have received a copy of the GNU General Public License
 /// along with Sanara.  If not, see<http://www.gnu.org/licenses/>.
+using Discord;
 using Discord.Commands;
 using SanaraV2.Modules.Base;
 using System;
@@ -30,7 +31,7 @@ namespace SanaraV2.Modules.GamesInfo
         {
             Utilities.CheckAvailability(Context.Guild.Id, Program.Module.Kancolle);
             await Program.p.DoAction(Context.User, Context.Guild.Id, Program.Module.Kancolle);
-            var result = await Features.GamesInfo.Kancolle.SearchCharac(shipNameArr);
+            var result = await Features.GamesInfo.FireEmblem.SearchCharac(shipNameArr);
             switch (result.error)
             {
                 case Features.GamesInfo.Error.Charac.Help:
@@ -42,6 +43,15 @@ namespace SanaraV2.Modules.GamesInfo
                     break;
 
                 case Features.GamesInfo.Error.Charac.None:
+                    EmbedBuilder embed = new EmbedBuilder()
+                    {
+                        Color = Color.Blue,
+                        Title = result.answer.name,
+                        ImageUrl = result.answer.thumbnailUrl
+                    };
+                    foreach (Tuple<string, string> s in result.answer.allCategories)
+                        embed.AddField(s.Item1, s.Item2);
+                    await ReplyAsync("", false, embed.Build());
                     break;
 
                 default:

@@ -158,20 +158,21 @@ namespace SanaraV2
             }
             lastDiscordBotsSent = DateTime.MinValue;
 
-            await commands.AddModuleAsync<Information>(null);
-            await commands.AddModuleAsync<Settings>(null);
-            await commands.AddModuleAsync<Linguist>(null);
-            await commands.AddModuleAsync<Kancolle>(null);
-            await commands.AddModuleAsync<Booru>(null);
-            await commands.AddModuleAsync<VnModule>(null);
-            await commands.AddModuleAsync<Doujinshi>(null);
             await commands.AddModuleAsync<AnimeManga>(null);
-            await commands.AddModuleAsync<GameModule>(null);
-            await commands.AddModuleAsync<Youtube>(null);
-            await commands.AddModuleAsync<RadioModule>(null);
-            await commands.AddModuleAsync<Xkcd>(null);
-            await commands.AddModuleAsync<Communication>(null);
+            await commands.AddModuleAsync<Booru>(null);
             await commands.AddModuleAsync<Code>(null);
+            await commands.AddModuleAsync<Communication>(null);
+            await commands.AddModuleAsync<Doujinshi>(null);
+            await commands.AddModuleAsync<FireEmblem>(null);
+            await commands.AddModuleAsync<GameModule>(null);
+            await commands.AddModuleAsync<Information>(null);
+            await commands.AddModuleAsync<Kancolle>(null);
+            await commands.AddModuleAsync<Linguist>(null);
+            await commands.AddModuleAsync<RadioModule>(null);
+            await commands.AddModuleAsync<Settings>(null);
+            await commands.AddModuleAsync<VnModule>(null);
+            await commands.AddModuleAsync<Xkcd>(null);
+            await commands.AddModuleAsync<Youtube>(null);
 
             client.MessageReceived += HandleCommandAsync;
             client.GuildAvailable += GuildJoin;
