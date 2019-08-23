@@ -29,6 +29,14 @@ namespace SanaraV2.Modules.Tools
     {
         Program p = Program.p;
 
+        [Command("Autocomplete", RunMode = RunMode.Async)]
+        public async Task Autocomplete(params string[] args)
+        {
+            Utilities.CheckAvailability(Context.Guild.Id, Program.Module.Communication);
+            await p.DoAction(Context.User, Context.Guild.Id, Program.Module.Communication);
+            var result = await Features.Tools.Communication.Autocomplete(args);
+        }
+
         [Command("Infos"), Summary("Give informations about an user"), Alias("Info")]
         public async Task Infos(params string[] command)
         {

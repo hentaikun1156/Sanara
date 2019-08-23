@@ -20,6 +20,11 @@ namespace SanaraV2.Features.Tools
 {
     public static class Response
     {
+        public class Autocomplete
+        {
+            public string output;
+        }
+
         public class Kanji
         {
             public char kanji;
